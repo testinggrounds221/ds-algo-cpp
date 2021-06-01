@@ -1,0 +1,16 @@
+1.	START
+2.	Input str1
+3.	Input ch
+4.	flag -> first_occurence(str1,ch)
+5.	if flag is -1:
+		Print Character not found
+	else:
+		Print Character found at flag
+6. END
+
+first_occurence(str1,ch)
+1.	loop i from 0 to length of str1:
+		if ith Character in str1 is ch:
+			return i
+2.	if the loop nevers returns:
+		return -1
