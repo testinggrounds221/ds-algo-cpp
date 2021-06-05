@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 struct Array {
 	int A[10];
 	int length;
@@ -13,6 +14,8 @@ bool checkValidIndex(Array arr, int index);
 void Append(Array* arr, int x);
 void Insert(Array* arr, int index, int x);
 int Delete(Array* arr, int index);
+int Get(Array arr, int index);
+int Set(Array* arr, int key, int index);
 
 int LinearSearch(Array* arr, int key);
 int BinarySearchLoop(Array arr, int key);
@@ -28,6 +31,42 @@ void swap(int* x, int* y) {
 	int temp = *x;
 	*x = *y;
 	*y = temp;
+}
+
+int Get(Array arr, int index) {
+	if (checkValidIndex(arr, index))
+		return arr.A[index];
+	return -1;
+}
+
+void setValue(Array* arr, int key, int index) {
+	if (checkValidIndex(*arr, index))
+		arr->A[index] = key;
+}
+
+int Sum(Array arr) {
+	int sum = 0;
+	for (int ele : arr.A)
+		sum += ele;
+	return sum;
+}
+
+double Average(Array arr) { return (double)(Sum(arr) / arr.length); }
+
+int Max(Array arr) {
+	int max = arr.A[0];
+	for (int i = 0;i < arr.length;i++) {
+		if (max < arr.A[i]) max = arr.A[i];
+	}
+	return max;
+}
+
+int Min(Array arr) {
+	int min = arr.A[0];
+	for (int i = 0;i < arr.length;i++) {
+		if (min > arr.A[i]) min = arr.A[i];
+	}
+	return min;
 }
 
 void Display(Array arr) {
@@ -72,7 +111,7 @@ int BinarySearchLoop(Array arr, int key) {
 	int mid = 0;
 	int upper = arr.length;
 	int lower = 0;
-	while (lower < upper) {
+	while (lower <= upper) {
 		mid = (lower + upper) / 2;
 		if (arr.A[mid] == key)
 			return mid;
@@ -128,8 +167,22 @@ int main(int argc, char const* argv[])
 	// printf("\n%d\n", BinarySearchRecursive(arr, 20, 0, arr.length));
 	// printf("\n%d\n", BinarySearchRecursive(arr, 2, 0, arr.length));
 	// printf("\n%d\n", BinarySearchRecursive(arr, 30, 0, arr.length));
-	printf("\n%d\n", BinarySearchRecursive(arr, 5, 0, arr.length));
+	// printf("\n%d\n", BinarySearchRecursive(arr, 5, 0, arr.length));
 	// printf("\n%d\n", BinarySearchRecursive(arr, 6, 0, arr.length));
 
+	// cout << Get(arr, 20) << endl;
+	// cout << "MAX" << endl;
+	// cout << Max(arr) << endl;
+	// cout << "MIN" << endl;
+	// cout << Min(arr) << endl;
+	// cout << Sum(arr) << endl;
+	// cout << Average(arr) << endl;
+
+
+
+
+
+	setValue(&arr, 13, 2);
+	Display(arr);
 	return 0;
 }
