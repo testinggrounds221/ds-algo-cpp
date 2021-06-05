@@ -62,6 +62,7 @@ void Array::Display()
 	cout << "\nElements are\n";
 	for (i = 0;i < length;i++)
 		cout << A[i] << " ";
+	cout << endl;
 	if (length == 0) cout << "\nEmpty Array !\n";
 }
 void Array::Append(int x)
