@@ -4,6 +4,23 @@
 	"files.associations": {
 		"iostream": "cpp",
 		"new": "cpp",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"ostream": "cpp",
+		"*.tcc": "cpp",
+		"string": "cpp",
+		"vector": "cpp",
+		"string_view": "cpp",
+		"fstream": "cpp",
+		"istream": "cpp",
+		"sstream": "cpp",
+		"functional": "cpp",
+		"tuple": "cpp",
+		"array": "cpp",
+		"deque": "cpp",
+		"type_traits": "cpp",
+		"cmath": "cpp",
+		"random": "cpp",
+		"limits": "cpp",
+		"streambuf": "cpp"
 	},
 }

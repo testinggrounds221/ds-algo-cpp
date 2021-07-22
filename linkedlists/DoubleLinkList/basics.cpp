@@ -1,4 +1,6 @@
 #include<iostream>
+#include <stack>
+
 using namespace std;
 
 class Node {
@@ -10,9 +12,8 @@ public:
 
 
 class DoubleLL {
-private:
-	Node* head;
 public:
+	Node* head;
 	DoubleLL();
 	DoubleLL(int* A, int n);
 	void Display();
@@ -23,6 +24,7 @@ public:
 	void ReverseList1();
 	void ReverseList2();
 	Node* findMiddlePointer();
+	Node* findIntersection(Node* head2);
 };
 
 DoubleLL::DoubleLL() {
@@ -186,16 +188,44 @@ Node* DoubleLL::findMiddlePointer() {
 	return p;
 }
 
+Node* DoubleLL::findIntersection(Node* head2) {
+	Node* ptr = head;
+	stack<Node*> s1;
+	stack<Node*> s2;
+
+	while (ptr) s1.push(ptr);
+	ptr = head2;
+	while (ptr) s2.push(ptr);
+
+	ptr = nullptr;
+	while (!(s1.empty() && s2.empty()))
+	{
+		if (s1.top() == s2.top()) {
+			ptr = s1.top();
+			s1.pop();
+			s2.pop();
+		}
+		else return ptr;
+	}
+	return ptr;
+
+}
+
 int main(int argc, char const* argv[]) {
 	int A[] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
+	int B[] = { 1,2,3,4,5, };
+
 	// int A[] = { 1 };
 	int n = sizeof(A) / sizeof(int);
 
 
 	DoubleLL dll(A, n);
+	DoubleLL dllB(B, sizeof(B) / sizeof(int));
+	dllB.head->next->next->next->next = dll.head->next->next;
+	cout << dll.findIntersection(dllB.head)->val << endl;
 	// dll.Insert(-1, 100);
 	// dll.insertHead(10);
-	cout << "hey" << endl;
+	// cout << "hey" << endl;
 	// cout << "Deleted " << dll.Delete(0) << endl << endl;
 	// cout << "Deleted " << dll.Delete(-1) << endl << endl;
 	// cout << "Deleted " << dll.Delete(9) << endl << endl;
