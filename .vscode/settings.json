@@ -21,6 +21,7 @@
 		"cmath": "cpp",
 		"random": "cpp",
 		"limits": "cpp",
-		"streambuf": "cpp"
+		"streambuf": "cpp",
+		"queue": "cpp"
 	},
 }
