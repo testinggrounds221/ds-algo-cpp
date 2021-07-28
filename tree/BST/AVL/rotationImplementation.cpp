@@ -32,14 +32,30 @@ public:
 	Node* inorderPredecessor(Node* ptr);
 	Node* inorderSuccessor(Node* ptr);
 
+	int getBalanceFactor(Node* ptr);
+
+	Node* LRotate(Node* ptr);
+	Node* RRotate(Node* ptr);
+
 	Node* rDelete(int key) { return rDelete(root, key); }
 	Node* rDelete(Node* ptr, int key);
 
 	void fromPreorder(int* pre, int n);
+
+	int height() { return height(root); }
+	int height(Node* ptr);
 };
 
 int height(Node* ptr) {
-	if (!ptr) return 0;
+	if (!ptr) return -1;
+	int l = height(ptr->lchild);
+	int r = height(ptr->rchild);
+	if (l > r) return l + 1;
+	else return r + 1;
+}
+
+int BST::height(Node* ptr) {
+	if (!ptr) return -1;
 	int l = height(ptr->lchild);
 	int r = height(ptr->rchild);
 	if (l > r) return l + 1;
@@ -112,6 +128,11 @@ void BST::Inorder(Node* p) {
 	}
 }
 
+int BST::getBalanceFactor(Node* ptr) {
+	if (!ptr) return -1;
+	return height(ptr->lchild) - height(ptr->rchild);
+}
+
 Node* BST::rInsert(Node* ptr, int key) {
 	Node* t;
 	if (!ptr) {
@@ -125,7 +146,37 @@ Node* BST::rInsert(Node* ptr, int key) {
 		ptr->lchild = rInsert(ptr->lchild, key);
 	else
 		ptr->rchild = rInsert(ptr->rchild, key);
+	int bf = getBalanceFactor(ptr);
+	if (bf > 1 && key < ptr->lchild->val)return RRotate(ptr); // LL Imbalance
+	if (bf < -1 && key > ptr->rchild->val) return LRotate(ptr); // RR Imbalance
+	//LR Rotation
+	if (bf > 1 && key > ptr->lchild->val) {
+		ptr->lchild = LRotate(ptr->lchild);
+		return RRotate(ptr);
+	}
+	//RL Rotation
+	if (bf < -1 && key < ptr->rchild->val) {
+		ptr->rchild = RRotate(ptr->rchild);
+		return LRotate(ptr);
+	}
 	return ptr;
+}
+
+Node* BST::LRotate(Node* ptr) {
+	Node* x = ptr->rchild;
+	Node* T2 = x->lchild;
+	x->lchild = ptr;
+	ptr->rchild = T2;
+	return x;
+}
+
+Node* BST::RRotate(Node* ptr) {
+	Node* x = ptr->lchild;
+	Node* T2 = x->rchild;
+	x->rchild = ptr;
+	ptr->lchild = T2;
+	return x;
+
 }
 
 void BST::iInsert(Node* ptr, int key) {
@@ -200,6 +251,23 @@ int main(int argc, char const* argv[])
 {
 	BST bst;
 
+	// bst.root = bst.rInsert(20);
+	// bst.iInsert(10);
+	// bst.iInsert(20);
+	// bst.iInsert(30);
+	// bst.iInsert(40);
+	// bst.iInsert(50);
+	// bst.Inorder();
+	// cout << endl;
+
+	// bst.rDelete(10);
+	// int A[] = { 30,20,10,15,25,40,50,45 };
+	// BST bt;
+	// int n = sizeof(A) / sizeof(A[0]);
+	// bt.fromPreorder(A, n);
+
+	// bt.Inorder();
+	// cout << "Ended";
 	BST bt;
 	bt.root = bt.rInsert(10);
 	bt.root = bt.rInsert(20);
@@ -210,15 +278,8 @@ int main(int argc, char const* argv[])
 	bt.root = bt.rInsert(70);
 	bt.root = bt.rInsert(80);
 	bt.root = bt.rInsert(90);
-	cout << height(bt.root);
 
-	// int A[] = { 30,20,10,15,25,40,50,45 };
-	// BST bt;
-	// int n = sizeof(A) / sizeof(A[0]);
-	// bt.fromPreorder(A, n);
-
-	// bt.Inorder();
-	// cout << "Ended";
+	cout << bt.height();
 	return 0;
 }
 
