@@ -22,6 +22,14 @@
 		"random": "cpp",
 		"limits": "cpp",
 		"streambuf": "cpp",
-		"queue": "cpp"
+		"queue": "cpp",
+		"atomic": "cpp",
+		"bit": "cpp",
+		"algorithm": "cpp",
+		"memory_resource": "cpp",
+		"memory": "cpp",
+		"initializer_list": "cpp",
+		"stdexcept": "cpp",
+		"utility": "cpp"
 	},
 }
