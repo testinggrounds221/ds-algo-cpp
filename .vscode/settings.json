@@ -32,4 +32,7 @@
 		"stdexcept": "cpp",
 		"utility": "cpp"
 	},
+	"[c]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
 }
