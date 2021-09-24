@@ -52,7 +52,7 @@ template <typename T>
 T CircularQueue<T>::dequeue() {
 	if (isEmpty()) return 0;
 	f = (f + 1) % size;
-	return Q[++f];
+	return Q[f];
 }
 
 template <typename T>
@@ -72,8 +72,7 @@ int main(int argc, char const* argv[])
 	q.enqueue(21);
 	q.enqueue(22);
 	q.enqueue(500);
-	q.enqueue(20);
-	q.enqueue(12220);
+
 
 	// q.enqueue(20);
 	// q.enqueue(20);

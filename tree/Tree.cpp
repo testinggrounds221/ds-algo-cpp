@@ -286,7 +286,6 @@ int Tree::countLeafNodes(Node* ptr) {
 	return 0;
 }
 
-
 int main(int argc, char const* argv[])
 {
 	Tree tr;
@@ -295,25 +294,24 @@ int main(int argc, char const* argv[])
 	// cout << "Preorder Traversal : ";
 	// tr.Preorder();
 	// cout << endl;
-
 	// cout << "Inorder Traversal : ";
 	// tr.Inorder();
 	// cout << endl;
-
 	// cout << "Iteractive Inorder Traversal : ";
 	// tr.iterativeInorder();
 	// cout << endl;
-
 	// cout << "Postorder Traversal : ";
 	// tr.Postorder();
 	// cout << endl;
-
 	// cout << "Iteractive PostOrder Traversal : ";
 	// tr.iterativePostorder();
 	// cout << endl;
 
 	cout << "iterativelevelorder Traversal : ";
-	tr.iterativeLevelorder();
+	cout << "\nNumber of 0 Degree Nodes : " << tr.countLeafNodes();
+	cout << "\nNumber of 1 Degree Nodes : " << tr.countDeg1Nodes();
+	cout << "\nNumber of 2 Degree Nodes : " << tr.countDeg2Nodes();
+
 	cout << endl;
 
 

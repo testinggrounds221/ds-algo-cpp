@@ -139,7 +139,6 @@ void DoubleLL::Insert(int index, int x) {
 	Node* ptr = head;
 
 	while (ptr->next && i < index - 1) {
-
 		ptr = ptr->next;
 		i++;
 	}
@@ -220,9 +219,9 @@ int main(int argc, char const* argv[]) {
 
 
 	DoubleLL dll(A, n);
-	DoubleLL dllB(B, sizeof(B) / sizeof(int));
-	dllB.head->next->next->next->next = dll.head->next->next;
-	cout << dll.findIntersection(dllB.head)->val << endl;
+	// DoubleLL dllB(B, sizeof(B) / sizeof(int));
+	// dllB.head->next->next->next->next = dll.head->next->next;
+	// cout << dll.findIntersection(dllB.head)->val << endl;
 	// dll.Insert(-1, 100);
 	// dll.insertHead(10);
 	// cout << "hey" << endl;
@@ -230,13 +229,9 @@ int main(int argc, char const* argv[]) {
 	// cout << "Deleted " << dll.Delete(-1) << endl << endl;
 	// cout << "Deleted " << dll.Delete(9) << endl << endl;
 	// cout << "Deleted " << dll.Delete(100) << endl << endl;
-
-
 	// cout << "Deleted " << dll.Delete(8) << endl << endl;
 	// cout << "Deleted " << dll.Delete(5) << endl << endl;
 	// cout << "Deleted " << dll.Delete(0) << endl << endl;
-
-
 	// cout << "Deleted " << dll.Delete(0) << endl << endl;
 	// cout << "Deleted " << dll.Delete(0) << endl << endl;
 	// dll.ReverseList1();

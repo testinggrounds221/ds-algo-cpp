@@ -49,7 +49,10 @@ void CircularQueue<T>::enqueue(T val) {
 
 template <typename T>
 T CircularQueue<T>::dequeue() {
-	if (isEmpty()) return 0;
+	if (isEmpty()) {
+		printf("dd");
+		return 0;
+	}
 	return Q[++f];
 }
 
@@ -67,6 +70,14 @@ int main(int argc, char const* argv[])
 
 	// q.dequeue();
 	q.enqueue(500);
+	q.enqueue(100);
+	q.dequeue();
+	q.dequeue();
+	q.dequeue();
+	q.dequeue();
+	printf("Over");
+
+
 	// q.dequeue();
 	// q.dequeue();
 	// q.dequeue();
@@ -75,7 +86,7 @@ int main(int argc, char const* argv[])
 	// q.enqueue(20);
 	// q.enqueue(20);
 	// q.enqueue(20);	
-	cout << q.dequeue();
+	// cout << q.dequeue();
 
 	q.traverse();
 	return 0;
