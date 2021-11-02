@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/* to store a data (consisting of key and value) in hash table array */
+/* to store a data (consisting of key and value) in hash table hashTable */
 struct item
 {
 	int key;
@@ -23,19 +23,21 @@ struct hashtable_item
 
 };
 
-struct hashtable_item* array;
+struct hashtable_item* hashTable;
 int size = 0;
 int max = 10;
 
-/* initializing hash table array */
-void init_array()
+/* initializing hash table hashTable */
+struct hashtable_item* init_hashTable()
 {
 	int i;
+	struct hashtable_item* hashTable = (struct hashtable_item*)(malloc(max * sizeof(struct hashtable_item*)));
 	for (i = 0; i < max; i++)
 	{
-		array[i].flag = 0;
-		array[i].data = NULL;
+		hashTable[i].flag = 0;
+		hashTable[i].data = NULL;
 	}
+	return hashTable;
 }
 
 /* to every key, it will generate a corresponding index */
@@ -50,21 +52,21 @@ void insert(int key, int value)
 	int index = hashcode(key);
 	int i = index;
 
-	/* creating new item to insert in the hash table array */
+	/* creating new item to insert in the hash table hashTable */
 	struct item* new_item = (struct item*)malloc(sizeof(struct item));
 	new_item->key = key;
 	new_item->value = value;
 
-	/* probing through the array until we reach an empty space */
-	while (array[i].flag == 1)
+	/* probing through the hashTable until we reach an empty space */
+	while (hashTable[i].flag == 1)
 	{
 
-		if (array[i].data->key == key)
+		if (hashTable[i].data->key == key)
 		{
 
 			/* case where already existing key matches the given key */
 			printf("\n Key already exists, hence updating its value \n");
-			array[i].data->value = value;
+			hashTable[i].data->value = value;
 			return;
 
 		}
@@ -78,8 +80,8 @@ void insert(int key, int value)
 
 	}
 
-	array[i].flag = 1;
-	array[i].data = new_item;
+	hashTable[i].flag = 1;
+	hashTable[i].data = new_item;
 	size++;
 	printf("\n Key (%d) has been inserted \n", key);
 
@@ -92,16 +94,16 @@ void remove_element(int key)
 	int index = hashcode(key);
 	int  i = index;
 
-	/* probing through array until we reach an empty space where not even once an element had been present */
-	while (array[i].flag != 0)
+	/* probing through hashTable until we reach an empty space where not even once an element had been present */
+	while (hashTable[i].flag != 0)
 	{
 
-		if (array[i].flag == 1 && array[i].data->key == key)
+		if (hashTable[i].flag == 1 && hashTable[i].data->key == key)
 		{
 
 			// case when data key matches the given key
-			array[i].flag = 2;
-			array[i].data = NULL;
+			hashTable[i].flag = 2;
+			hashTable[i].data = NULL;
 			size--;
 			printf("\n Key (%d) has been removed \n", key);
 			return;
@@ -125,7 +127,7 @@ void display()
 	int i;
 	for (i = 0; i < max; i++)
 	{
-		struct item* current = (struct item*)array[i].data;
+		struct item* current = (struct item*)hashTable[i].data;
 
 		if (current == NULL)
 		{
@@ -149,8 +151,7 @@ int main()
 	int choice, key, value, n, c;
 
 
-	array = (struct hashtable_item*)malloc(max * sizeof(struct hashtable_item*));
-	init_array();
+	struct hashtable_item* hashTable = init_hashTable();
 
 	do {
 		printf("Implementation of Hash Table in C with Linear Probing \n\n");

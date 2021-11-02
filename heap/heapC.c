@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 void Insert(int A[], int n)
 {
 	int i = n, temp;
@@ -10,11 +11,12 @@ void Insert(int A[], int n)
 	}
 	A[i] = temp;
 }
+
 int Delete(int A[], int n)
 {
 	int i, j, x, temp, val;
 	val = A[1];
-	x = A[n];
+	// x = A[n];
 	A[1] = A[n];
 	A[n] = val;
 	i = 1;j = i * 2;
@@ -35,17 +37,20 @@ int Delete(int A[], int n)
 	}
 	return val;
 }
+
 int main() {
-	int H[] = { 0,14,15,5,20,30,8,40 };
+
+	int H[] = { 0,14,15,5,20,30,8,40 ,25 };
 	int i;
-	for (i = 2;i <= 7;i++)
+	for (i = 2;i <= 8;i++)
 		Insert(H, i);
 
-	for (i = 7;i > 1;i--)
-	{
-		Delete(H, i);
-	}
-	for (i = 1;i <= 7;i++)
+	// for (i = 7;i > 1;i--)
+	// {
+	// 	Delete(H, i);
+	// }
+
+	for (i = 1;i <= 8;i++)
 		printf("%d ", H[i]);
 	printf("\n");
 

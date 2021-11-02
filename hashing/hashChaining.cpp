@@ -108,25 +108,11 @@ int main(int argc, char const* argv[])
 	for (int i = 0;i < 10;i++) {
 		ch.insert(i);
 	}
-	cout << "After Inserting : " << endl;
-	ch.print();
-
-	// for (int j = 0;j < 10;j++) {
-	// 	cout << ch.Delete(j) << endl;
-	// }	
-	// ch.print();
-	// ch.insert(31);
-	// ch.print();
-	// ch.Delete(31);
-	// ch.print();
 
 	ch.Delete(1);
 	ch.print();
 
-	// cout << ch.Delete(31) << endl;
-
-	// cout << ch.Delete(3) << endl;
-	// ch.print();
+	
 
 
 

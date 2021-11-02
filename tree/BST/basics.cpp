@@ -10,7 +10,6 @@ public:
 	Node* rchild;
 };
 
-
 class BST {
 public:
 	Node* root;
@@ -24,6 +23,11 @@ public:
 
 	void Inorder(Node* ptr);
 	void Inorder() { Inorder(root); }
+
+	void Preorder(Node* ptr);
+	void Preorder() { Preorder(root); }
+
+
 	Node* iSearch(int key);
 
 	Node* rSearch(int key) { return rSearch(root, key); }
@@ -109,6 +113,14 @@ void BST::Inorder(Node* p) {
 		Inorder(p->lchild);
 		cout << p->val << ", " << flush;
 		Inorder(p->rchild);
+	}
+}
+
+void BST::Preorder(Node* p) {
+	if (p) {
+		cout << p->val << ", " << flush;
+		Preorder(p->lchild);
+		Preorder(p->rchild);
 	}
 }
 
@@ -202,22 +214,35 @@ int main(int argc, char const* argv[])
 
 	BST bt;
 	bt.root = bt.rInsert(10);
-	bt.root = bt.rInsert(20);
+	bt.root = bt.rInsert(70);
 	bt.root = bt.rInsert(30);
+	bt.root = bt.rInsert(20);
 	bt.root = bt.rInsert(40);
 	bt.root = bt.rInsert(50);
 	bt.root = bt.rInsert(60);
-	bt.root = bt.rInsert(70);
-	bt.root = bt.rInsert(80);
-	bt.root = bt.rInsert(90);
-	cout << height(bt.root);
+	bt.Inorder();
+	cout << "\nDeleted" << bt.rDelete(60)->val << endl;
+	cout << "Deleted" << bt.rDelete(60)->val << endl;
+	cout << "Deleted" << bt.rDelete(60)->val << endl;
+	cout << "Deleted" << bt.rDelete(60)->val << endl;
+	cout << "Deleted" << bt.rDelete(60)->val << endl;
+
+	bt.Inorder();
+
+
+	// cout << height(bt.root);
 
 	// int A[] = { 30,20,10,15,25,40,50,45 };
 	// BST bt;
 	// int n = sizeof(A) / sizeof(A[0]);
 	// bt.fromPreorder(A, n);
 
-	// bt.Inorder();
+
+	printf("\n");
+	// bt.Preorder();
+
+
+
 	// cout << "Ended";
 	return 0;
 }

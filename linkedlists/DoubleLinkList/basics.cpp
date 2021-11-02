@@ -99,14 +99,16 @@ void DoubleLL::ReverseList1() {
 
 void DoubleLL::ReverseList2() { // NOT COMPLETED !
 	Node* ptr = head;
+	Node* temp = NULL;
+
 	while (ptr) {
-		Node* temp = ptr->next;
-		ptr->next = ptr->prev;
-		ptr->prev = temp;
-
+		temp = ptr->prev;
+		ptr->prev = ptr->next;
+		ptr->next = temp;
 		ptr = ptr->prev;
-
 	}
+	if (temp)
+		head = temp->prev;
 }
 
 int DoubleLL::Delete(int index) {
@@ -236,7 +238,9 @@ int main(int argc, char const* argv[]) {
 	// cout << "Deleted " << dll.Delete(0) << endl << endl;
 	// dll.ReverseList1();
 	// dll.Display();
-	cout << dll.findMiddlePointer()->val << endl;
+	// cout << dll.findMiddlePointer()->val << endl;
+	dll.ReverseList2();
+	traverse(dll.head);
 	// Node* head1 = new Node;
 	// create(A, 9, head1);
 	// traverse(head1);

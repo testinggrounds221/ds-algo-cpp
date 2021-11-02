@@ -24,7 +24,7 @@ struct hashtable_item
 
 struct hashtable_item* array;
 int size = 0;
-int max = 10;
+int max = 20;
 
 /* this function returns corresponding index of the given key */
 int hashcode(int key)
@@ -51,7 +51,7 @@ void insert(int key, int value)
 	int i = index;
 	int h = 1;
 
-	struct item* new_item = (struct item*)malloc(sizeof(struct item));
+	struct item* new_item = (struct item*)(calloc(1, sizeof(struct item)));
 	new_item->key = key;
 	new_item->value = value;
 
@@ -80,7 +80,7 @@ void insert(int key, int value)
 
 	array[i].flag = 1;
 	array[i].data = new_item;
-	printf("\n Key (%d) has been inserted\n", key);
+	printf("\n Key (%d) has been inserted at %d\n", key, i);
 	size++;
 
 }
